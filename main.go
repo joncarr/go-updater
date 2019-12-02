@@ -24,16 +24,14 @@ var (
 
 )
 
-func init() {
+func main() {
+
 	opSys = runtime.GOOS
-	installedVersion = runtime.Version()
-	installedVersion = installedVersion[2:]
 	arch = runtime.GOARCH
 	goroot = runtime.GOROOT()
 	goInstallPath = "/usr/local"
-}
+	installedVersion = runtime.Version()[2:]
 
-func main() {
 	checkFlag := flag.Bool("c", false, "Checks latest available version, no other actions performed")
 	flag.Parse()
 
@@ -43,7 +41,7 @@ func main() {
 
 	if *checkFlag {
 		fmt.Println("Latest available version:", latestVersion)
-		fmt.Println("Currently installed version:", installedVersion)
+		fmt.Println("Currently installed version:", runtime.Version()[2:])
 		os.Exit(0)
 	}
 
